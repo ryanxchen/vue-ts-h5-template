@@ -8,6 +8,26 @@
   </div>
 </template>
 
+<script lang="ts">
+import { Route } from 'vue-router'
+import { Component, Vue, Watch } from 'vue-property-decorator'
+
+Component.registerHooks([
+  'beforeRouteEnter',
+  'beforeRouteLeave',
+  'beforeRouteUpdate' // for vue-router 2.2+
+])
+
+@Component
+export default class App extends Vue {
+  @Watch('$route')
+  private changeRouter (route: Route) {
+    console.log(route)
+  }
+}
+</script>
+
+
 <style lang="scss">
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -22,7 +42,7 @@
     font-weight: bold;
     color: #2c3e50;
     &.router-link-exact-active {
-      color: #42b983;
+      color: $theme-color;
     }
   }
 }
