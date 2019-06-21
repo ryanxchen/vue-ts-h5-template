@@ -5,8 +5,7 @@
     <p>{{ getterTotal }}</p>
     <p>{{ time | formateTime }}</p>
     <p>{{ obj }}</p>
-    <button @click="add">{{ mes }}</button>
-    <!-- <sq-button type="primary" @click="add">{{ mes }}</sq-button> -->
+    <sq-button type="primary" @click="add">{{ mes }}</sq-button>
   </div>
 </template>
 

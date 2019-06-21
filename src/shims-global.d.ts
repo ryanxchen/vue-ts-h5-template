@@ -1,2 +1,2 @@
-// declare module 'fastclick'
-// declare module '@insaic/neon'
+declare module 'fastclick'
+declare module '@insaic/neon'
