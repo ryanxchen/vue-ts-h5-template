@@ -33,18 +33,17 @@ module.exports = {
       }
     }
   },
-  devServer: {
-    proxy: {
-      '/h5-api': {
-        // target: 'https://mecsit.insaic.com',
-        target: 'https://mecdev.insaic.com:9443',
-        changeOrigin: true,
-        pathRewrite: {
-          '^/h5-api': '/h5-api'
-        }
-      }
-    }
-  },
+  // devServer: {
+  //   proxy: {
+  //     '/h5-api': {
+  //       // target: 'https://',
+  //       changeOrigin: true,
+  //       pathRewrite: {
+  //         '^/h5-api': '/h5-api'
+  //       }
+  //     }
+  //   }
+  // },
   chainWebpack: config => {
     // version
     config
@@ -53,7 +52,7 @@ module.exports = {
         args[0].htmlMeta = getMetaInfo()
         // 添加 build 时间 -- version
         args[0].version = getVersion()
-        // 添加 CDN 参数到 htmlWebpackPlugin 配置中，见 src/index.html 修改
+        // 添加 CDN 参数到 htmlWebpackPlugin 配置中，见 index.html 修改
         if (process.env.NODE_ENV === 'production') {
           args[0].cdn = cdnConfig().build
         } else if (process.env.NODE_ENV === 'development') {
