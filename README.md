@@ -1,5 +1,5 @@
 # vue-ts-h5-template
-通过 vue-cli 生成的 TypeScript 项目架手架，增加了项目通用配置。
+通过 vue-cli 生成的 TypeScript 项目脚手架，增加了项目通用配置。
 ```sh
 .
 ├── README.md
