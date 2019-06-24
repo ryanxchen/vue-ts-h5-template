@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import Router from 'vue-router'
+import Router, { Route } from 'vue-router'
 import pages from './pages'
 
 Vue.use(Router)
@@ -16,6 +16,7 @@ const router = new Router({
     {
       path: '/',
       name: 'home',
+      meta: { title: '首页' },
       component: () => import(/* webpackChunkName: "home" */ '@/views/Home/index.vue')
     },
     ...pages
@@ -29,5 +30,8 @@ const router = new Router({
 //   }
 //   next()
 // })
+router.afterEach((to: Route) => {
+  to.meta.title && (document.title = to.meta.title)
+})
 
 export default router
