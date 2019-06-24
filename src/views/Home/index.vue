@@ -5,6 +5,7 @@
     <p>{{ getterTotal }}</p>
     <p>{{ time | formateTime }}</p>
     <p>{{ obj }}</p>
+    <p><sq-agree v-model="isAgree">agree</sq-agree></p>
     <sq-button type="primary" @click="add">{{ mes }}</sq-button>
   </div>
 </template>
@@ -34,6 +35,7 @@ const homeStore = namespace('home')
   }
 })
 export default class Home extends Vue {
+  isAgree: boolean = true
   message: number = 1
   obj: any = { a: 1 }
   time: Date = new Date()
