@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
-    <p>{{ stateTotal }}</p>
+    <!-- <p>{{ stateTotal }}</p> -->
     <p>{{ getterTotal }}</p>
     <p>{{ time | formateTime }}</p>
     <p>{{ obj }}</p>
@@ -12,17 +12,9 @@
 
 <script lang="ts">
 import { Route } from 'vue-router'
-import {
-  State,
-  Getter,
-  Action,
-  Mutation,
-  namespace
-} from 'vuex-class'
 import { Component, Vue, Watch } from 'vue-property-decorator'
 import HelloWorld from '@/components/HelloWorld.vue'
-
-const homeStore = namespace('home')
+import { HomeModule } from '@/store/modules/home'
 
 @Component({
   components: {
@@ -34,16 +26,15 @@ const homeStore = namespace('home')
     }
   }
 })
-export default class Home extends Vue {
+export default class extends Vue {
   isAgree: boolean = true
   message: number = 1
   obj: any = { a: 1 }
   time: Date = new Date()
 
-  // @homeStore.Getter total!: number
-  @homeStore.State('total') stateTotal!: number
-  @homeStore.Getter('total') getterTotal!: number
-  @homeStore.Action('addTotal') actionIncrement!: any
+  get getterTotal () {
+    return HomeModule.getTotal
+  }
 
   @Watch('message')
   onMessageWatch (val: number, oldVal: number): void {
@@ -68,9 +59,13 @@ export default class Home extends Vue {
   add (): void {
     this.message++
     this.obj.a += 1
-    this.actionIncrement().then(() => {
-      console.log('then actionIncrement')
+    HomeModule.add().then(() => {
+      console.log('after add - then')
     })
+    .catch(() => {
+      console.log('after add - catch')
+    })
+
     // console.log('this.$route:', this.$route)
     // console.log('this.$router:', this.$router)
     // setTimeout(() => {

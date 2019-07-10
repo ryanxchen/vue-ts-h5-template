@@ -1,47 +1,38 @@
-import { GetterTree, Commit } from 'vuex'
+import {
+  VuexModule,
+  Module,
+  Mutation,
+  Action,
+  getModule
+} from 'vuex-module-decorators'
+import store from '@/store'
 
-interface State {
+export interface IHomeState {
   total: number
 }
 
-const INCREMENT = 'INCREMENT'
+@Module({ name: 'home', store, dynamic: true, namespaced: true })
+class Home extends VuexModule implements IHomeState {
+  total = 0
 
-const state: State = {
-  total: 0
-}
+  get getTotal () {
+    return this.total
+  }
 
-// getters
-const getters: GetterTree<State, State> = {
-  total: (st: State) => st.total
-}
+  @Mutation
+  ADD_TOTAL () {
+    this.total += 1
+  }
 
-// actions
-const actions = {
-  addTotal (context: { commit: Commit }) {
-    return new Promise((resolve, reject) => {
-      try {
-        setTimeout(() => {
-          context.commit(INCREMENT)
-          resolve()
-        }, 3000)
-      } catch (error) {
-        reject(error)
-      }
+  @Action({ commit: 'ADD_TOTAL' })
+  add () {
+    return new Promise((resolve: any, reject: any) => {
+      setTimeout(() => {
+        console.log('action_add')
+        resolve()
+      }, 3000)
     })
   }
 }
 
-// mutations
-const mutations = {
-  [INCREMENT] (st: State) {
-    st.total += 1
-  }
-}
-
-export default {
-  namespaced: true,
-  state,
-  getters,
-  actions,
-  mutations
-}
+export const HomeModule = getModule(Home)
