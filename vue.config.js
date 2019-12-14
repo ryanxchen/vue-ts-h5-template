@@ -1,3 +1,8 @@
+const path = require('path')
+const resolve = dir => {
+  return path.join(__dirname,dir)
+}
+
 module.exports = {
   // publicPath: '/mec/',
   // pages: {
@@ -12,9 +17,9 @@ module.exports = {
   // runtimeCompiler: true,
   // productionSourceMap: false,
   // // 将neon源码包里的js进行babel-loader转译
-  // transpileDependencies: [
-  //   '@insaic'
-  // ],
+  transpileDependencies: [
+    '@insaic'
+  ],
   configureWebpack: {
     performance: {
       hints: process.env.NODE_ENV === 'production' ? 'error' : false,
@@ -45,6 +50,8 @@ module.exports = {
   //   }
   // },
   chainWebpack: config => {
+    config.resolve.alias
+      .set('@styles',resolve('src/assets/styles'))
     // version
     config
       .plugin('html')

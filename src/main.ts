@@ -1,5 +1,6 @@
 import 'babel-polyfill'
 import 'normalize.css'
+import '@/lib/responsive'
 import Vue, { DirectiveOptions } from 'vue'
 import App from './App.vue'
 import router from './router'
