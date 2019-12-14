@@ -23,11 +23,20 @@ FastClick.attach(document.body)
 
 // 全局 directives
 Object.keys(directives).forEach((key: string) => {
-  Vue.directive(key, (directives as { [key: string]: DirectiveOptions })[key])
+  Vue.directive(
+    key,
+    (directives as {
+      [key: string]: DirectiveOptions
+    })[key]
+  )
 })
 // 全局 filter
 Object.keys(filters).forEach((key: string) => {
-  Vue.filter(key, (filters as { [key: string]: any })[key])
+  Vue.filter(
+    key,
+    (filters as {
+      [key: string]: any
+    })[key])
 })
 
 new Vue({
