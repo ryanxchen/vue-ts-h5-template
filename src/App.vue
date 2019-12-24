@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div id="nav">
+    <div id="nav" v-if="showNavHandle()" >
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
     </div>
@@ -20,32 +20,31 @@ Component.registerHooks([
 
 @Component
 export default class App extends Vue {
+  routeName = ''
+
   @Watch('$route')
   private changeRouter (route: Route) {
     console.log(route)
+    this.routeName = route.name || ''
+  }
+
+  private showNavHandle () {
+    return !([
+      'not-found'
+    ].includes(this.routeName))
   }
 }
 </script>
 
 
-<style lang="scss">
-@import '@/assets/styles/global.sass';
+<style lang="sass">
+@import '@/assets/styles/global.sass'
 
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: $theme-color;
-    }
-  }
-}
+#nav
+  padding: 30px
+  a
+    font-weight: bold
+    color: #2c3e50
+    &.router-link-exact-active 
+      color: $theme-color
 </style>
