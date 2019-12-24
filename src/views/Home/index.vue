@@ -73,12 +73,20 @@ export default class extends Vue {
     // }, 3000)
   }
 
-  beforeRouteEnter (to: Route, from: Route, next: () => void): void {
+  beforeRouteEnter (
+    to: Route,
+    from: Route,
+    next: () => void
+  ): void {
     console.log('home-beforeRouteEnter')
     next()
   }
 
-  beforeRouteLeave (to: Route, from: Route, next: () => void): void {
+  beforeRouteLeave (
+    to: Route,
+    from: Route,
+    next: () => void
+  ): void {
     console.log('home-beforeRouteLeave')
     next()
   }

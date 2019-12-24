@@ -10,12 +10,20 @@ import { Route } from 'vue-router'
 
 @Component
 export default class extends Vue {
-  beforeRouteEnter (to: Route, from: Route, next: () => void): void {
+  beforeRouteEnter (
+    to: Route,
+    from: Route,
+    next: () => void
+  ): void {
     console.log('about-beforeRouteEnter')
     next()
   }
 
-  beforeRouteLeave (to: Route, from: Route, next: () => void): void {
+  beforeRouteLeave (
+    to: Route,
+    from: Route,
+    next: () => void
+  ): void {
     console.log('about-beforeRouteLeave')
     next()
   }

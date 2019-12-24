@@ -1,10 +1,10 @@
 const path = require('path')
 const resolve = dir => {
-  return path.join(__dirname,dir)
+  return path.join(__dirname, dir)
 }
 
 module.exports = {
-  // publicPath: '/mec/',
+  // publicPath: '/',
   // pages: {
   //   app: {
   //     entry: 'src/index.js',
@@ -12,11 +12,11 @@ module.exports = {
   //     filename: 'index.html'
   //   }
   // },
-  // outputDir: 'dist/mec',
+  // outputDir: 'dist/',
   // assetsDir: 'static',
   // runtimeCompiler: true,
-  // productionSourceMap: false,
-  // // 将neon源码包里的js进行babel-loader转译
+  productionSourceMap: false,
+  // 将neon源码包里的js进行babel-loader转译
   transpileDependencies: [
     '@insaic'
   ],
@@ -50,8 +50,10 @@ module.exports = {
   //   }
   // },
   chainWebpack: config => {
-    config.resolve.alias
-      .set('@styles',resolve('src/assets/styles'))
+    config.resolve.alias.set(
+      '@styles',
+      resolve('src/assets/styles')
+    )
     // version
     config
       .plugin('html')

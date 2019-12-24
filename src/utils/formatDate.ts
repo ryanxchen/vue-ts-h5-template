@@ -1,4 +1,7 @@
-export function formatDate (datetime: Date | number | string, fmt: string): string {
+export function formatDate (
+  datetime: Date | number | string,
+  fmt: string
+): string {
   if (!datetime) return ''
 
   const date: Date = new Date(
@@ -12,7 +15,10 @@ export function formatDate (datetime: Date | number | string, fmt: string): stri
   }
 
   if (/(y+)/.test(fmt)) {
-    fmt = fmt.replace(RegExp.$1, (date.getFullYear() + '').substr(4 - RegExp.$1.length))
+    fmt = fmt.replace(
+      RegExp.$1,
+      (date.getFullYear() + '').substr(4 - RegExp.$1.length)
+    )
   }
 
   const o: any = {
@@ -26,7 +32,10 @@ export function formatDate (datetime: Date | number | string, fmt: string): stri
   for (const k in o) {
     if (new RegExp(`(${k})`).test(fmt)) {
       const str: string = o[k] + ''
-      fmt = fmt.replace(RegExp.$1, RegExp.$1.length === 1 ? str : padLeftZero(str))
+      fmt = fmt.replace(
+        RegExp.$1,
+        RegExp.$1.length === 1 ? str : padLeftZero(str)
+      )
     }
   }
 
